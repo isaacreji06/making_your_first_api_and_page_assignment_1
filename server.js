@@ -13,6 +13,7 @@ Requirements:
    a. A personalized greeting using the name provided.
    b. A cheerful message based on the current day of the week.
 
+
 Example Responses:
 - For Monday:
   {
@@ -32,7 +33,34 @@ Example Responses:
 
 Add the required logic below to complete the API.
 */
-
+app.get("/assistant/greet",(req,res)=>{
+  let name=req.query.name
+  let day =new Date().getDay()
+  if (day==1){
+    let obj={
+    welcomeMessage: `Hello, ${name}! Welcome to our assistant app!`,
+    dayMessage: "Happy Monday! Start your week with energy!"
+    }
+    return res.send(obj)
+  }
+  else if(day==5){
+    let obj={
+    welcomeMessage: `Hello, ${name}! Welcome to our assistant app!`,
+    dayMessage: "It's Friday! The weekend is near!"
+    }
+    return res.send(obj)
+  }
+  else{
+    let obj={
+    welcomeMessage: `Hello, ${name}! Welcome to our assistant app!`,
+    dayMessage: "Have a wonderful day!"
+  }
+  return res.send(obj)
+  }
+})
+app.get("/",(request,response)=>{
+  return response.send('<h1>Hello World</h1>')
+})
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Virtual Assistant API is running on http://localhost:${PORT}`);
